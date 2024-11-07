@@ -1,0 +1,2 @@
+1. When changing models run "python manage.py makemigrations" and apply with "python manage.py migrate"
+2. Migrate
