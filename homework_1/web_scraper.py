@@ -7,7 +7,6 @@ from datetime import datetime, timedelta
 import psycopg2
 import time
 from selenium.webdriver.support.wait import WebDriverWait
-#from selenium.webdriver.support import expected_conditions as EC
 
 driver = webdriver.Chrome()
 
@@ -44,7 +43,7 @@ def get_last_recorded_date(issuer_code, conn):
     if last_date is None:
         last_date = datetime.now() - timedelta(days=365 * 10)
     elif isinstance(last_date, datetime):
-        last_date = last_date.date()  # Convert datetime to date if necessary
+        last_date = last_date.date()  # Convert datetime to date
 
     return last_date
 
@@ -57,7 +56,7 @@ def fetch_data_by_date_range(issuer_code, start_date, conn):
         select_element.send_keys(issuer_code)
     except Exception as e:
         print(f"Error selecting issuer code {issuer_code}: {e}")
-        return  # Skip to the next issuer if there's an issue with selecting
+        return
 
     end_date = (datetime.now() - timedelta(days=1)).date()
     current_date = start_date.date() if isinstance(start_date, datetime) else start_date
@@ -78,7 +77,7 @@ def fetch_data_by_date_range(issuer_code, start_date, conn):
             to_date_input.send_keys(next_year_date.strftime("%d.%m.%Y"))
         except Exception as e:
             print(f"Error setting date range {current_date} to {next_year_date} for {issuer_code}: {e}")
-            return  # Skip to the next issuer if there's an issue with date inputs
+            return
 
         try:
             show_button = driver.find_element(By.CSS_SELECTOR, "input.btn.btn-primary-sm[type='submit']")
@@ -207,11 +206,9 @@ def main():
 
 
     elapsed_time = time.time() - start_time
-    # Calculate minutes and seconds
     minutes = elapsed_time // 60
     seconds = elapsed_time % 60
 
-    # Print the time in minutes and seconds format
     print(f"Total time to fill the database: {int(minutes)} minutes {int(seconds)} seconds") # 33 minutes 9.00 seconds
 
     conn.close()
