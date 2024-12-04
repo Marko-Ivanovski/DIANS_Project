@@ -37,13 +37,21 @@ def retrieve_issuers(url):
 # Filter 2: Check Last Date
 def get_last_recorded_date(issuer_code, conn):
     cursor = conn.cursor()
-    cursor.execute("SELECT MAX(Date) FROM Shares WHERE Firm_ID = %s", (issuer_code,))
-    last_date = cursor.fetchone()[0]
-    if last_date is None:
-        last_date = datetime.now() - timedelta(days=365 * 10)  # Start 10 years ago if no data exists
-    elif isinstance(last_date, datetime):
-        last_date = last_date.date()  # Convert datetime to date
-    return last_date
+    try:
+        cursor.execute("SELECT MAX(Date) FROM Shares WHERE Firm_ID = %s", (issuer_code,))
+        last_date = cursor.fetchone()[0]
+        if last_date is None:
+            last_date = datetime.now() - timedelta(days=365 * 10)  # Start 10 years ago if no data exists
+        elif isinstance(last_date, datetime):
+            last_date = last_date.date()  # Convert datetime to date
+        return last_date
+    except Exception as e:
+        print(f"Error getting last recorded date for {issuer_code}: {e}")
+        conn.rollback()
+        return datetime.now().date() - timedelta(days=365 * 10)
+    finally:
+        cursor.close()
+
 
 
 # Filter 3: Fetch and Insert Data
@@ -82,11 +90,12 @@ def fetch_data_by_date_range(issuer_code, start_date, conn):
             show_button.click()
 
             WebDriverWait(driver, 2).until(EC.presence_of_element_located((By.ID, "resultsTable")))
-
             process_data_from_table(issuer_code, conn, driver)
 
         except Exception:
             print(f"No data found for {issuer_code} for the year starting {current_date}. Skipping to the next year.")
+            current_date = next_year_date
+            continue
 
         current_date = next_year_date
 
@@ -95,12 +104,14 @@ def process_data_from_table(issuer_code, conn, driver):
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     table = soup.find("table", {"id": "resultsTable"})
     if not table:
-        return
+        print(f"No data found for {issuer_code}")
+        return  # Skip if no data is found
+
     data_to_insert = []
-    for row in table.find_all("tr")[1:]:
+    for row in table.find_all("tr")[1:]:  # Skip header row
         cells = row.find_all("td")
         if len(cells) < 8:
-            print("Skipping incomplete row:", row)
+            print(f"Skipping incomplete row: {row}")
             continue
 
         date_str = cells[0].text.strip()
@@ -118,11 +129,13 @@ def process_data_from_table(issuer_code, conn, driver):
             }
             data_to_insert.append(data)
         except (ValueError, IndexError) as e:
-            print(f"Error parsing row data for date {date_str}: {e}")
+            print(f"Error parsing row data for {issuer_code}: {e}")
             continue
 
     if data_to_insert:
         insert_data_into_db(data_to_insert, issuer_code, conn)
+    else:
+        print(f"No valid data found for {issuer_code}")
 
 def insert_data_into_db(data, issuer_code, conn):
     cursor = conn.cursor()
@@ -145,10 +158,10 @@ def main():
     try:
         conn = psycopg2.connect(
             dbname="postgres",
-            user="postgres",
+            user="postgres.phainubfmnqdywawrjjz",
             password="#Jak.Password(1)",
-            host="localhost",
-            port="1234"
+            host="aws-0-eu-central-1.pooler.supabase.com",
+            port="6543",
         )
     except psycopg2.OperationalError as e:
         print("Error connecting to the database:", e)
