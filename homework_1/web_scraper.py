@@ -157,11 +157,11 @@ def insert_data_into_db(data, issuer_code, conn):
 def main():
     try:
         conn = psycopg2.connect(
-            dbname="postgres",
-            user="postgres.phainubfmnqdywawrjjz",
+            dbname="dians_project",
+            user="postgres",
             password="#Jak.Password(1)",
-            host="aws-0-eu-central-1.pooler.supabase.com",
-            port="6543",
+            host="localhost",
+            port="5432",
         )
     except psycopg2.OperationalError as e:
         print("Error connecting to the database:", e)
