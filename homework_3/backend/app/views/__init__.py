@@ -1,5 +1,7 @@
 #views/__init__.py
 
+from .auth_view import SignupView, LoginView
+
 from .firm_view import FirmView
 from .share_view import ShareView
 from .transaction_logs_view import TransactionLogsView
