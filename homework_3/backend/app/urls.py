@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import (FirmView, FirmDetailView, ShareView, ShareByFirmView, SharesFilteredView,UserView,
-                    TransactionSharesView, TransactionLogsView, SignupView, LoginView)
+from .views import (FirmView, FirmDetailView, ShareView, ShareByFirmView, SharesFilteredView, UserView, UserDetailView,
+                    TransactionSharesView, TransactionLogsView, SignupView, LoginView, RefreshTokenView)
 
 urlpatterns = [
     path('users/', UserView.as_view(), name='user-list'),
@@ -17,4 +17,6 @@ urlpatterns = [
     # AUTH ENDPOINTS
     path('signup/', SignupView.as_view(), name='signup'),
     path('login/', LoginView.as_view(), name='login'),
+    path('login/refresh/', RefreshTokenView.as_view(), name='refresh-token'),
+    path('edit-user/', UserDetailView.as_view(), name="user-detail"),
 ]

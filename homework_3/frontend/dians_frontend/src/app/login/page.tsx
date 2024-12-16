@@ -21,8 +21,13 @@ const Login = () => {
             const response = await axios.post("http://localhost:8000/login/", formData);
             console.log("User logged in:", response.data);
 
+            // Store the tokens in localStorage or cookies (preferably httpOnly cookies)
+            localStorage.setItem("access_token", response.data.access_token);
+            localStorage.setItem("refresh_token", response.data.refresh_token);
+
+
             // Redirect to the user's dashboard or home page after successful login
-            router.push("/home");  // Redirect to your desired route after login
+            router.push("/home");
         } catch (error: unknown) {
             if (error instanceof Error) {
                 console.error("Error logging in:", error.message);
