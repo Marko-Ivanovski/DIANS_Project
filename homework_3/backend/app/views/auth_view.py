@@ -1,9 +1,9 @@
 from django.http import JsonResponse
-from django.views import View
+from rest_framework.views import APIView
 from ..service.auth_service import signup_user, login_user
 import json
 
-class SignupView(View):
+class SignupView(APIView):
     def post(self, request):
         try:
             data = json.loads(request.body)
@@ -18,7 +18,7 @@ class SignupView(View):
             return JsonResponse({"error": str(e)}, status=400)
 
 
-class LoginView(View):
+class LoginView(APIView):
     def post(self, request):
         try:
             data = json.loads(request.body)

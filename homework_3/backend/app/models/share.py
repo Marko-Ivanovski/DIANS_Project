@@ -1,7 +1,7 @@
 from django.db import models
 
 class Share(models.Model):
-    firm = models.ForeignKey("Firm", on_delete=models.CASCADE, related_name='shares', null=False)
+    firm = models.ForeignKey("Firm", on_delete=models.CASCADE, related_name='shares', to_field="firm_id", null=False)
     date = models.DateField()
     price_of_last_transaction = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     max_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
