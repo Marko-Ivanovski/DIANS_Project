@@ -5,3 +5,4 @@ from .share_serializer import ShareSerializer
 from .transaction_logs_serializer import TransactionLogSerializer
 from .transaction_shares_serializer import TransactionShareSerializer
 from .user_serializer import UserSerializer
+from  .my_shares_serializer import MySharesSerializer

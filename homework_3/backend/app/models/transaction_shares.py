@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class TransactionShare(models.Model):
     TRANSACTION_TYPE_CHOICES = [
         ('BUY', 'Buy'),
