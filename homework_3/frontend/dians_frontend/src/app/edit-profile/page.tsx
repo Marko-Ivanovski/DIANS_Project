@@ -147,7 +147,7 @@ const EditUserPage = () => {
 
       {/* Section to add balance */}
       <div style={{ marginTop: "20px" }}>
-        <h2>Account Balance: ${user.balance.toFixed(2)}</h2>
+        <h2>Account Balance: MKD {user.balance.toFixed(2)}</h2>
         <label>Add Balance:</label>
         <input
           type="number"

@@ -5,3 +5,4 @@ from .share_view import ShareView, ShareByFirmView, SharesFilteredView
 from .transaction_logs_view import TransactionLogsView
 from .transaction_shares_view import TransactionSharesView
 from .user_view import UserView, UserDetailView
+from .my_shares_view import MyStocksView
