@@ -27,6 +27,13 @@ interface Share {
   price_of_last_transaction: number;
 }
 
+interface TechnicalIndicator {
+  date: string;
+  SMA_10: number; // Simple Moving Average (10-day)
+  EMA_10: number; // Exponential Moving Average (10-day)
+  RSI: number;    // Relative Strength Index
+}
+
 const SharesPage: React.FC = () => {
   const [firms, setFirms] = useState<Firm[]>([]);
   const [selectedFirm, setSelectedFirm] = useState<Firm | null>(null);
@@ -50,7 +57,7 @@ const SharesPage: React.FC = () => {
       .catch((error) => console.error("Error fetching firms:", error));
   }, []);
 
-  // Fetch shares based on the selected firm and date range
+  // Fetch shares and technical analysis data
   const fetchShares = async () => {
     if (!selectedFirm || !fromDate || !toDate) {
       alert("Please select a firm and provide both dates.");
@@ -58,33 +65,74 @@ const SharesPage: React.FC = () => {
     }
 
     try {
-      const response = await axios.get("http://localhost:8000/shares/average-price", {
+      // Fetch share prices
+      const sharesResponse = await axios.get("http://localhost:8000/shares/average-price", {
         params: {
           firm_id: selectedFirm.value,
           from_date: fromDate,
           to_date: toDate,
         },
       });
-      console.log("Response data:", response.data);
-      prepareChartData(response.data);
+      console.log("Shares Data:", sharesResponse.data);
+
+      // Fetch technical analysis data
+      const analysisResponse = await axios.get("http://localhost:8000/shares/technical-analysis", {
+        params: {
+          firm_id: selectedFirm.value,
+          from_date: fromDate,
+          to_date: toDate,
+        },
+      });
+      console.log("Technical Analysis Data:", analysisResponse.data);
+
+      // Combine the two datasets into the chart
+      prepareChartData(sharesResponse.data, analysisResponse.data);
     } catch (error: any) {
-      console.error("Error fetching shares:", error.response?.data || error);
+      console.error("Error fetching data:", error.response?.data || error);
       alert(error.response?.data || "An error occurred.");
     }
   };
 
-  // Prepare data for the chart
-  const prepareChartData = (data: Share[]) => {
+  // Prepare data for the chart (shares + technical indicators)
+  const prepareChartData = (sharesData: Share[], analysisData: TechnicalIndicator[]) => {
     setChartData({
-      labels: data.map((share) => share.date),
+      labels: sharesData.map((share) => share.date),
       datasets: [
         {
           label: "Price of Last Transaction",
-          data: data.map((share) => share.price_of_last_transaction), // Y-axis: Prices
+          data: sharesData.map((share) => share.price_of_last_transaction), // Y-axis: Prices
           fill: false,
           backgroundColor: "rgba(75, 192, 192, 0.6)",
           borderColor: "rgba(75, 192, 192, 1)",
           tension: 0.1,
+        },
+        {
+          label: "SMA (10-day)",
+          data: analysisData.map((indicator) => indicator.SMA_10), // Simple Moving Average
+          fill: false,
+          checked: false,
+          backgroundColor: "rgba(255, 206, 86, 0.6)",
+          borderColor: "rgba(255, 206, 86, 1)",
+          borderDash: [5, 5],
+        },
+        {
+          label: "EMA (10-day)",
+          data: analysisData.map((indicator) => indicator.EMA_10), // Exponential Moving Average
+          fill: false,
+          checked: false,
+          backgroundColor: "rgba(54, 162, 235, 0.6)",
+          borderColor: "rgba(54, 162, 235, 1)",
+          borderDash: [10, 5],
+        },
+        {
+          label: "RSI (14-day)",
+          data: analysisData.map((indicator) => indicator.RSI), // Relative Strength Index
+          fill: false,
+          checked: false,
+          backgroundColor: "rgba(255, 99, 132, 0.6)",
+          borderColor: "rgba(255, 99, 132, 1)",
+          tension: 0.1,
+          yAxisID: "y2", // Separate Y-axis for RSI
         },
       ],
     });
@@ -92,7 +140,7 @@ const SharesPage: React.FC = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Shares Viewer</h1>
+      <h1>Shares Viewer with Technical Analysis</h1>
 
       {/* Dropdown for firms */}
       <div>
@@ -120,12 +168,12 @@ const SharesPage: React.FC = () => {
         />
       </div>
 
-      {/* Button to fetch shares */}
+      {/* Button to fetch shares and analysis */}
       <button onClick={fetchShares} style={{ margin: "10px 0" }}>
         Fetch Shares
       </button>
 
-      {/* Chart for share prices */}
+      {/* Chart for share prices and analysis */}
       {chartData && (
         <div style={{ marginTop: "20px" }}>
           <Line
@@ -139,6 +187,11 @@ const SharesPage: React.FC = () => {
                 y: {
                   title: { display: true, text: "Price" },
                 },
+                y2: {
+                  position: "right",
+                  title: { display: true, text: "RSI" },
+                  grid: { drawOnChartArea: false },
+                },
               },
             }}
           />
@@ -147,5 +200,4 @@ const SharesPage: React.FC = () => {
     </div>
   );
 };
-
 export default SharesPage;

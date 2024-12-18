@@ -9,7 +9,7 @@ from ..models import MyShares, Share
 from ..serializer import MySharesSerializer, ShareSerializer
 
 class MyStocksView(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         transaction_type = request.query_params.get('transaction_type')

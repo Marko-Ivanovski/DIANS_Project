@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (FirmView, FirmDetailView, ShareView, ShareByFirmView, SharesFilteredView, UserView, UserDetailView, MyStocksView,
-                    TransactionSharesView, TransactionLogsView, SignupView, LoginView, RefreshTokenView)
+                    TransactionSharesView, TransactionLogsView, SignupView, LoginView, RefreshTokenView, TechnicalAnalysisView)
 
 urlpatterns = [
     path('users/', UserView.as_view(), name='user-list'),
@@ -13,6 +13,7 @@ urlpatterns = [
     path('shares/', ShareView.as_view(), name='share-list'),
     path('shares/<str:firm_id>/', ShareByFirmView.as_view(), name='share-by-firm-list'),
     path('shares/average-price', SharesFilteredView.as_view(), name='share-average-price'),
+    path('shares/technical-analysis', TechnicalAnalysisView.as_view(), name='share-technical-analysis'),
 
     # BUY/SELL
     path('transactions/my-shares', MyStocksView.as_view(), name='my-shares-list'),
