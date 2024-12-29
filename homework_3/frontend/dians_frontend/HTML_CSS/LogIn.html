@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In | MSE</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="Primary-Header">
+    <div class="container">
+        <a href="#"><img src="Images/Logo.png" alt="Macedonian Stock Exchange Logo"></a>
+        <nav class="primary-navigation">
+            <ul class="nav-list">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Predict.html">Predict</a></li>
+                <li><a href="About.html">About Us</a></li>
+                <li><a href="MyStocks.html">My Stocks</a></li>
+            </ul>
+        </nav>
+        <div class="buttons">
+            <a href="LogIn.html">
+                <button class="login-btn">Log In</button>
+            </a>
+
+            <a href="SignUp.html">
+                <button class="signup-btn">Sign Up</button>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="login-page">
+    <div class="login-container">
+        <!-- Left Section: Login Form -->
+        <div class="login-form">
+            <div class="badge">Log In</div>
+            <h1 class="form-title">Welcome Back</h1>
+            <hr class="divider">
+            <form action="Home.html" method="POST">
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" placeholder="e.g. john.doe@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password*</label>
+                    <input type="password" id="password" name="password" minlength="8" required>
+                </div>
+                <button class="cta-button" type="submit">Log In</button>
+            </form>
+            <p class="signup-link">Don't have an account? <a href="SignUp.html">Sign Up</a></p>
+        </div>
+
+        <!-- Right Section: Picture and Text -->
+        <div class="login-background">
+            <div class="background-text">
+                <h1>Start Your Journey to Smarter Investing</h1>
+                <p>Join our community and access cutting-edge tools and insights to make informed investment decisions.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-left">
+            <a href="#"><img src="Images/Logo.png" alt="Macedonian Stock Exchange Logo"></a>
+            <p>Stay informed with the latest stock trends and market analysis. Our platform provides you with real-time updates and historical data to empower your investment decisions.</p>
+            <div class="buttons">
+                <a href="LogIn.html">
+                    <button class="login-btn">Log In</button>
+                </a>
+
+                <a href="SignUp.html">
+                    <button class="signup-btn">Sign Up</button>
+                </a>
+            </div>
+        </div>
+        <div class="footer-right">
+            <div class="list-container">
+                <div class="list-title">Quick Links</div>
+                <ul>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="About.html">About Us</a></li>
+                    <li><a href="MyStocks.html">My Stocks</a></li>
+                    <li><a href="Predict.html">Predict</a></li>
+                </ul>
+            </div>
+            <div class="list-container">
+                <div class="list-title">Get In Touch</div>
+                <ul>
+                    <li><a href="https://maps.app.goo.gl/uejm7y1HKX4WNbyM7">Skopje, Macedonia</a></li>
+                    <li>johndoe@example.com</li>
+                    <li>+389 12 34 56</li>
+                </ul>
+            </div>
+            <div class="list-container">
+                <div class="list-title">Social Media</div>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>LinkedIn</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
