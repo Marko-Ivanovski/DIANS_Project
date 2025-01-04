@@ -38,26 +38,59 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                />
-                <button type="submit">Login</button>
-            </form>
-        </div>
+        <main className="login-page">
+            <div className="login-container">
+                {/* Left Section: Login Form */}
+                <div className="login-form">
+                    <div className="badge">Log In</div>
+                    <h1 className="form-title">Welcome Back</h1>
+                    <hr className="divider" />
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="email">Email*</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="e.g. john.doe@example.com"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password*</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                minLength={4}
+                                required
+                            />
+                        </div>
+                        <button className="cta-button" type="submit">
+                            Log In
+                        </button>
+                    </form>
+                    <p className="signup-link">
+                        Don't have an account? <a href="/signup">Sign Up</a>
+                    </p>
+                </div>
+
+                {/* Right Section: Picture and Text */}
+                <div className="login-background">
+                    <div className="background-text">
+                        <h1>Start Your Journey to Smarter Investing</h1>
+                        <p>
+                            Join our community and access cutting-edge tools and insights to make informed investment decisions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
     );
 };
 

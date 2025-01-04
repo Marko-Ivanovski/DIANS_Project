@@ -11,6 +11,11 @@ class UserView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+class UserFirstNameView(APIView):
+    def get(self, request):
+        user = request.user
+        return Response({"first_name": user.first_name})
+
 class UserDetailView(APIView):
     permission_classes = [IsAuthenticated]  # Ensure JWT authentication is required
 

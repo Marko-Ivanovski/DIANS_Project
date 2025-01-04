@@ -34,40 +34,84 @@ const Signup = () => {
     };
 
     return (
-        <div>
-            <h1>Signup</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="first_name"
-                    placeholder="First Name"
-                    value={formData.first_name}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="last_name"
-                    placeholder="Last Name"
-                    value={formData.last_name}
-                    onChange={handleChange}
-                />
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                />
-                <button type="submit">Sign Up</button>
-            </form>
-        </div>
+        <main className="signup-page">
+            <div className="signup-container">
+                {/* Left Section: Signup Form */}
+                <div className="signup-form">
+                    <div className="badge">Sign Up</div>
+                    <h1 className="form-title">Become a Member</h1>
+                    <hr className="divider" />
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="first_name">First Name*</label>
+                            <input
+                                type="text"
+                                id="first_name"
+                                name="first_name"
+                                placeholder="e.g. John"
+                                value={formData.first_name}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="last_name">Last Name*</label>
+                            <input
+                                type="text"
+                                id="last_name"
+                                name="last_name"
+                                placeholder="e.g. Doe"
+                                value={formData.last_name}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email">Email*</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="e.g. john.doe@example.com"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password*</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                minLength={8}
+                                required
+                            />
+                        </div>
+                        <button className="cta-button" type="submit">
+                            Create Account Today!
+                        </button>
+                    </form>
+                    <p className="login-link">
+                        Already have an account? <a href="/login">Log In</a>
+                    </p>
+                </div>
+
+                {/* Right Section: Picture and Text */}
+                <div className="login-background">
+                    <div className="background-text">
+                        <h1>Start Your Journey to Smarter Investing</h1>
+                        <p>
+                            Join our community and access cutting-edge tools and insights to make informed investment
+                            decisions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
     );
 };
 

@@ -1,9 +1,10 @@
 from django.urls import path
 from .views import (FirmView, FirmDetailView, ShareView, ShareByFirmView, SharesFilteredView, UserView, UserDetailView, MyStocksView,
-                    TransactionSharesView, TransactionLogsView, SignupView, LoginView, RefreshTokenView, TechnicalAnalysisView)
+                    TransactionSharesView, TransactionLogsView, SignupView, LoginView, RefreshTokenView, TechnicalAnalysisView, UserFirstNameView)
 
 urlpatterns = [
     path('users/', UserView.as_view(), name='user-list'),
+    path('users/first-name/', UserFirstNameView.as_view(), name='user-first-name'),
     path('transactions/shares/', TransactionSharesView.as_view(), name='transaction-shares-list'),
     path('transactions/logs/', TransactionLogsView.as_view(), name='transaction-logs-list'),
 

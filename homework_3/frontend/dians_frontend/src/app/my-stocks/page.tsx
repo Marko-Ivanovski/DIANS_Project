@@ -148,68 +148,83 @@ const MyStocksPage = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>My Stocks</h1>
+  <div className="p-6 bg-gray-100 min-h-screen">
+    <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">My Stocks</h1>
 
-      {error && <p>{error}</p>}
+    {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
-      <div>
-        <label>Transaction Type: </label>
-        <select
-          value={transactionType}
-          onChange={(e) => setTransactionType(e.target.value)}
-        >
-          <option value="BUY">Buy</option>
-          <option value="SELL">Sell</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Quantity: </label>
-        <input
-          type="number"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-          min="1"
-        />
-      </div>
-
-      <div>
-        {transactionType === "BUY" ? (
-          <h2>Available Shares to Buy</h2>
-        ) : (
-          <h2>Your Purchased Stocks</h2>
-        )}
-
-        <table>
-          <thead>
-            <tr>
-              <th>Firm</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Date</th> {/* Add Date Row */}
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {(transactionType === "BUY" ? shares : myShares).map((share) => (
-              <tr key={share.id}>
-                <td>{share.firm}</td>
-                <td>{share.price_of_last_transaction}</td>
-                <td>{transactionType === "BUY" ? share.quantity_of_shares : share.quantity}</td>
-                <td>{transactionType === "BUY" ? share.date : share.purchase_date}</td>
-                <td>
-                  <button onClick={() => handleTransaction(share)}>
-                    {transactionType === "BUY" ? "Buy" : "Sell"}
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div className="mb-6">
+      <label className="block text-gray-700 font-medium mb-2">Transaction Type:</label>
+      <select
+        className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        value={transactionType}
+        onChange={(e) => setTransactionType(e.target.value)}
+      >
+        <option value="BUY">Buy</option>
+        <option value="SELL">Sell</option>
+      </select>
     </div>
-  );
+
+    <div className="mb-6">
+      <label className="block text-gray-700 font-medium mb-2">Quantity:</label>
+      <input
+        type="number"
+        className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        value={quantity}
+        onChange={(e) => setQuantity(e.target.value)}
+        min="1"
+      />
+    </div>
+
+    <div>
+      {transactionType === "BUY" ? (
+        <h2 className="text-xl font-semibold text-green-700 mb-4">Available Shares to Buy</h2>
+      ) : (
+        <h2 className="text-xl font-semibold text-red-700 mb-4">Your Purchased Stocks</h2>
+      )}
+
+      <table className="w-full border-collapse bg-white rounded-lg shadow-md overflow-hidden">
+        <thead className="bg-gray-200">
+          <tr>
+            <th className="p-4 text-left font-semibold text-gray-600">Firm</th>
+            <th className="p-4 text-left font-semibold text-gray-600">Price</th>
+            <th className="p-4 text-left font-semibold text-gray-600">Quantity</th>
+            <th className="p-4 text-left font-semibold text-gray-600">Date</th>
+            <th className="p-4 text-left font-semibold text-gray-600">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {(transactionType === "BUY" ? shares : myShares).map((share, index) => (
+            <tr
+              key={share.id}
+              className={`${
+                index % 2 === 0 ? "bg-gray-50" : "bg-white"
+              } hover:bg-gray-100 transition-colors`}
+            >
+              <td className="p-4">{share.firm}</td>
+              <td className="p-4">{share.price_of_last_transaction} MKD</td>
+              <td className="p-4">{transactionType === "BUY" ? share.quantity_of_shares : share.quantity}</td>
+              <td className="p-4">{transactionType === "BUY" ? share.date : share.purchase_date}</td>
+              <td className="p-4">
+                <button
+                  className={`px-4 py-2 text-sm font-medium text-white rounded-md ${
+                    transactionType === "BUY"
+                      ? "bg-green-500 hover:bg-green-600"
+                      : "bg-red-500 hover:bg-red-600"
+                  } transition-colors`}
+                  onClick={() => handleTransaction(share)}
+                >
+                  {transactionType === "BUY" ? "Buy" : "Sell"}
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+);
+
 };
 
 export default MyStocksPage;

@@ -103,60 +103,107 @@ const EditUserPage = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Edit User Details</h1>
+      <>
+        <main>
+          <section className="account-section p-5">
+            <div className="account-badge text-lg font-bold">My Account</div>
+            <h1 className="account-title text-2xl mt-4">Account Details</h1>
+            <div className="account-details mt-4">
+              <div className="details-row flex gap-4">
+                <div>
+                  <label htmlFor="first-name">First Name</label>
+                  <input
+                      type="text"
+                      id="first-name"
+                      name="first-name"
+                      value={user.first_name}
+                      onChange={(e) => setUser({...user, first_name: e.target.value})}
+                      className="border p-2 mt-1"
+                      placeholder="Change your name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="last-name">Last Name</label>
+                  <input
+                      type="text"
+                      id="last-name"
+                      name="last-name"
+                      value={user.last_name}
+                      onChange={(e) => setUser({...user, last_name: e.target.value})}
+                      className="border p-2 mt-1"
+                      placeholder="Change your last name"
+                  />
+                </div>
+              </div>
+              <div className="details-row flex gap-4 mt-4">
+                <div>
+                  <label htmlFor="email">Email</label>
+                  <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={user.email}
+                      onChange={(e) => setUser({...user, email: e.target.value})}
+                      className="border p-2 mt-1"
+                      placeholder="Change your email"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password">Password</label>
+                  <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="border p-2 mt-1"
+                      placeholder="Leave blank to keep current password"
+                  />
+                </div>
+              </div>
+            </div>
+            {/* Error message */}
+            {error && <p style={{color: "red"}}>{error}</p>}
 
-      {/* Error message */}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+            <button onClick={handleUpdate} className="save-changes-btn bg-blue-500 text-white p-2 mt-4">Save Changes
+            </button>
 
-      {/* Form for editing user details */}
-      <div>
-        <label>First Name:</label>
-        <input
-          type="text"
-          value={user.first_name}
-          onChange={(e) => setUser({ ...user, first_name: e.target.value })}
-        />
-      </div>
-      <div>
-        <label>Last Name:</label>
-        <input
-          type="text"
-          value={user.last_name}
-          onChange={(e) => setUser({ ...user, last_name: e.target.value })}
-        />
-      </div>
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={user.email}
-          onChange={(e) => setUser({ ...user, email: e.target.value })}
-        />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Leave blank to keep current password"
-        />
-      </div>
-      <button onClick={handleUpdate}>Update Details</button>
+            {/* Section to add balance */}
+            <div className="balance-section mt-8">
+              <label htmlFor="balance-input">Add Balance (MKD):</label>
+              <input
+                  type="number"
+                  id="balance-input"
+                  name="balance-input"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  className="border-2 p-6 mt-1 text-black w-96"
+                  placeholder="Enter amount"
+              />
+              <button onClick={handleAddBalance} className="add-balance-btn bg-green-500 text-white p-2 mt-4">Add
+              </button>
 
-      {/* Section to add balance */}
-      <div style={{ marginTop: "20px" }}>
-        <h2>Account Balance: MKD {user.balance.toFixed(2)}</h2>
-        <label>Add Balance:</label>
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        />
-        <button onClick={handleAddBalance}>Add Balance</button>
-      </div>
-    </div>
+              <h2 className="mt-4">Account Balance: MKD {user.balance.toFixed(2)}</h2>
+            </div>
+          </section>
+        </main>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+      </>
   );
 };
 

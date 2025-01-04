@@ -139,65 +139,94 @@ const SharesPage: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Shares Viewer with Technical Analysis</h1>
+      <div style={{padding: "20px"}}>
+        <section className="main-section">
+          <div className="container flex">
+            {/* Left Section: Text, Firm Selection, Date Selection */}
+            <div className="left-content w-1/2">
+              <h1 className="fs-primary-heading fw-bold">Macedonian Stock Exchange</h1>
+              <p>
+                Stay informed with the latest stock trends and market analysis. Our platform provides you with
+                real-time updates and historical data to empower your investment decisions.
+              </p>
 
-      {/* Dropdown for firms */}
-      <div>
-        <label>Firm:</label>
-        <Select
-          options={firms}
-          onChange={setSelectedFirm}
-          placeholder="Select a firm"
-        />
+              {/* Firm Selection */}
+              <div className="form-group">
+                <label htmlFor="stock-firm">Select Firm:</label>
+                <Select
+                    options={firms}
+                    onChange={setSelectedFirm}
+                    placeholder="Select a firm"
+                />
+              </div>
+
+              {/* Date Selection */}
+              <div className="form-group">
+                <label htmlFor="start-date">Start Date:</label>
+                <input
+                    type="date"
+                    id="start-date"
+                    name="start-date"
+                    value={fromDate}
+                    onChange={(e) => setFromDate(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="end-date">End Date:</label>
+                <input
+                    type="date"
+                    id="end-date"
+                    name="end-date"
+                    value={toDate}
+                    onChange={(e) => setToDate(e.target.value)}
+                />
+              </div>
+              <button onClick={fetchShares}>Fetch Shares</button>
+            </div>
+
+            {/* Right Section: Graph Placeholder */}
+            <div className="right-content w-1/2">
+              {chartData ? (
+                  <div className="graph-placeholder">
+                    <Line
+                        data={chartData}
+                        options={{
+                          responsive: true,
+                          scales: {
+                            x: {title: {display: true, text: "Date"}},
+                            y: {title: {display: true, text: "Price"}},
+                            y2: {
+                              position: "right",
+                              title: {display: true, text: "RSI"},
+                              grid: {drawOnChartArea: false},
+                            },
+                          },
+                        }}
+                    />
+                  </div>
+              ) : (
+                  <div className="graph-placeholder"></div>
+              )}
+            </div>
+          </div>
+        </section>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </div>
-
-      {/* Input fields for date range */}
-      <div style={{ margin: "10px 0" }}>
-        <label>From Date:</label>
-        <input
-          type="date"
-          value={fromDate}
-          onChange={(e) => setFromDate(e.target.value)}
-        />
-        <label style={{ marginLeft: "10px" }}>To Date:</label>
-        <input
-          type="date"
-          value={toDate}
-          onChange={(e) => setToDate(e.target.value)}
-        />
-      </div>
-
-      {/* Button to fetch shares and analysis */}
-      <button onClick={fetchShares} style={{ margin: "10px 0" }}>
-        Fetch Shares
-      </button>
-
-      {/* Chart for share prices and analysis */}
-      {chartData && (
-        <div style={{ marginTop: "20px" }}>
-          <Line
-            data={chartData}
-            options={{
-              responsive: true,
-              scales: {
-                x: {
-                  title: { display: true, text: "Date" },
-                },
-                y: {
-                  title: { display: true, text: "Price" },
-                },
-                y2: {
-                  position: "right",
-                  title: { display: true, text: "RSI" },
-                  grid: { drawOnChartArea: false },
-                },
-              },
-            }}
-          />
-        </div>
-      )}
-    </div>
   );
 };
 export default SharesPage;
