@@ -30,6 +30,8 @@ const MyStocksPage = () => {
           }
         );
 
+        console.log("Response:", response.data);
+
         if (transactionType === "BUY") {
           setShares(response.data);
         } else if (transactionType === "SELL") {
@@ -37,6 +39,7 @@ const MyStocksPage = () => {
         }
       } catch (err) {
         setError("Error fetching data.");
+        console.log(accessToken);
         console.error(err);
       }
     };

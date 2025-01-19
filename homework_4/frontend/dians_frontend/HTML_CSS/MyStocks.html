@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Stocks</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="Primary-Header">
+    <div class="container">
+        <a href="#"><img src="Images/Logo.png" alt="Macedonian Stock Exchange Logo"></a>
+        <nav class="primary-navigation">
+            <ul class="nav-list">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Predict.html">Predict</a></li>
+                <li><a href="About.html">About Us</a></li>
+                <li><a href="MyStocks.html">My Stocks</a></li>
+            </ul>
+        </nav>
+        <div class="buttons">
+            <a href="LogIn.html">
+                <button class="login-btn">Log In</button>
+            </a>
+            <a href="SignUp.html">
+                <button class="signup-btn">Sign Up</button>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="main-section">
+        <div class="container">
+            <!-- Title Section -->
+            <div class="title-section">
+                <h1 class="fs-primary-heading fw-bold">Buy and Sell Stocks</h1>
+            </div>
+
+            <!-- Buttons to Switch Between Buy and Sell Stock Tables -->
+            <div class="action-buttons">
+                <button class="buy-btn" onclick="showBuyTable()">Buy Stocks</button>
+                <button class="sell-btn" onclick="showSellTable()">Sell Stocks</button>
+            </div>
+
+            <!-- Buy Stocks Table -->
+            <div id="buy-table" class="stock-table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="green-text">Stock Name</th>
+                        <th class="green-text">Quantity</th>
+                        <th class="green-text">Last Date</th>
+                        <th class="green-text">Price</th>
+                        <th class="green-text">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Apple Inc.</td>
+                        <td>100</td>
+                        <td>2024-12-28</td>
+                        <td>$150.00</td>
+                        <td><button class="action-btn buy">Buy</button></td>
+                    </tr>
+                    <tr>
+                        <td>Microsoft Corp.</td>
+                        <td>50</td>
+                        <td>2024-12-28</td>
+                        <td>$280.00</td>
+                        <td><button class="action-btn buy">Buy</button></td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Sell Stocks Table -->
+            <div id="sell-table" class="stock-table" style="display: none;">
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="green-text">Stock Name</th>
+                        <th class="green-text">Quantity</th>
+                        <th class="green-text">Price</th>
+                        <th class="green-text">Sell Quantity</th>
+                        <th class="green-text">Total Value</th>
+                        <th class="green-text">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Apple Inc.</td>
+                        <td>100</td>
+                        <td>$150.00</td>
+                        <td><input type="number" min="1" max="100" value="1" class="sell-quantity" data-price="150"></td>
+                        <td class="total-value">$150.00</td>
+                        <td><button class="action-btn sell">Sell</button></td>
+                    </tr>
+                    <tr>
+                        <td>Microsoft Corp.</td>
+                        <td>50</td>
+                        <td>$280.00</td>
+                        <td><input type="number" min="1" max="50" value="1" class="sell-quantity" data-price="280"></td>
+                        <td class="total-value">$280.00</td>
+                        <td><button class="action-btn sell">Sell</button></td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <!-- Left side: Logo, Paragraph, Buttons -->
+            <div class="footer-left">
+                <a href="#"><img src="Images/Logo.png" alt="Macedonian Stock Exchange Logo"></a>
+                <p>Stay informed with the latest stock trends and market analysis. Our platform provides you with real-time updates and historical data to empower your investment decisions.</p>
+                <div class="buttons">
+                    <a href="LogIn.html">
+                        <button class="login-btn">Log In</button>
+                    </a>
+
+                    <a href="SignUp.html">
+                        <button class="signup-btn">Sign Up</button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right side: Links Section -->
+            <div class="footer-right">
+                <div class="list-container">
+                    <div class="list-title">Quick Links</div>
+                    <ul>
+                        <li><a href="Home.html">Home</a></li>
+                        <li><a href="About.html">About Us</a></li>
+                        <li><a href="MyStocks.html">My Stocks</a></li>
+                        <li><a href="Predict.html">Predict</a></li>
+                    </ul>
+                </div>
+                <div class="list-container">
+                    <div class="list-title">Get In Touch</div>
+                    <ul>
+                        <li><a href="https://maps.app.goo.gl/uejm7y1HKX4WNbyM7">Skopje, Macedonia</a></li>
+                        <li>johndoe@example.com</li>
+                        <li>+389 12 34 56</li>
+                    </ul>
+                </div>
+                <div class="list-container">
+                    <div class="list-title">Social Media</div>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>LinkedIn</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<script>
+    function showBuyTable() {
+        document.getElementById('buy-table').style.display = 'block';
+        document.getElementById('sell-table').style.display = 'none';
+    }
+
+    function showSellTable() {
+        document.getElementById('buy-table').style.display = 'none';
+        document.getElementById('sell-table').style.display = 'block';
+        updateTotalValues(); // Update total value when switching to sell table
+    }
+
+    // Function to calculate and update total value based on quantity
+    function updateTotalValues() {
+        let sellQuantities = document.querySelectorAll('.sell-quantity');
+        sellQuantities.forEach(function(input) {
+            let price = parseFloat(input.getAttribute('data-price'));
+            let quantity = parseInt(input.value);
+            let totalValue = price * quantity;
+            input.closest('tr').querySelector('.total-value').textContent = `$${totalValue.toFixed(2)}`;
+        });
+    }
+
+    // Add event listeners to dynamically update total value when the quantity changes
+    document.addEventListener('input', function(e) {
+        if (e.target.classList.contains('sell-quantity')) {
+            updateTotalValues();
+        }
+    });
+</script>
+</body>
+</html>

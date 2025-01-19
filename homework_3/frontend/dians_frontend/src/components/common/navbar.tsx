@@ -5,15 +5,19 @@ import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 const Header = () => {
   const [user, setUser] = useState<{ first_name: string } | null>(null);
 
   // Check for user authentication
   useEffect(() => {
     const token = localStorage.getItem("access_token");
+    console.log("Token from localStorage:", localStorage.getItem("access_token"));
     if (token) {
       axios
         .get("http://localhost:8000/users/first-name/", {
+
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => setUser(response.data))

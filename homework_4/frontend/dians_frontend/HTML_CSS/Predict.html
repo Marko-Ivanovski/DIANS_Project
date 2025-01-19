@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSE</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="Primary-Header">
+    <div class="container">
+        <a href="#"><img src="Images/Logo.png" alt="Macedonian Stock Exchange Logo"></a>
+        <nav class="primary-navigation">
+            <ul class="nav-list">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Predict.html">Predict</a></li>
+                <li><a href="About.html">About Us</a></li>
+                <li><a href="MyStocks.html">My Stocks</a></li>
+            </ul>
+        </nav>
+        <div class="buttons">
+            <a href="LogIn.html">
+                <button class="login-btn">Log In</button>
+            </a>
+
+            <a href="SignUp.html">
+                <button class="signup-btn">Sign Up</button>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="main-section">
+        <div class="container">
+            <!-- Left Section: Text, Firm Selection, Date Selection -->
+            <div class="left-content">
+                <h1 class="fs-primary-heading fw-bold">Predict The Stock Exchange Now!</h1>
+                <p>
+                    Take your investment strategy to the next level with our AI-driven stock price prediction tool.
+                    Using advanced algorithms and historical data, we provide insights into potential market trends for
+                    the coming year!
+                </p>
+                <div class="form-group">
+                    <label for="stock-firm">Select Firm:</label>
+                    <select id="stock-firm" name="stock-firm">
+                        <option value="">-- Select a Firm --</option>
+                        <option value="apple">Apple Inc.</option>
+                        <option value="microsoft">Microsoft Corp.</option>
+                        <option value="google">Alphabet Inc.</option>
+                        <option value="amazon">Amazon.com Inc.</option>
+                        <option value="tesla">Tesla Inc.</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="start-date">Start Date:</label>
+                    <input type="date" id="start-date" name="start-date">
+                </div>
+            </div>
+
+            <!-- Right Section: Graph Placeholder -->
+            <div class="right-content">
+                <div class="graph-placeholder">Graph Placeholder</div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <!-- Left side: Logo, Paragraph, Buttons -->
+            <div class="footer-left">
+                <a href="#"><img src="Images/Logo.png" alt="Macedonian Stock Exchange Logo"></a>
+                <p>Stay informed with the latest stock trends and market analysis. Our platform provides you with
+                    real-time updates and historical data to empower your investment decisions.</p>
+                <div class="buttons">
+                    <a href="LogIn.html">
+                        <button class="login-btn">Log In</button>
+                    </a>
+
+                    <a href="SignUp.html">
+                        <button class="signup-btn">Sign Up</button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right side: Links Section -->
+            <div class="footer-right">
+                <div class="list-container">
+                    <div class="list-title">Quick Links</div>
+                    <ul>
+                        <li><a href="Home.html">Home</a></li>
+                        <li><a href="About.html">About Us</a></li>
+                        <li><a href="MyStocks.html">My Stocks</a></li>
+                        <li><a href="Predict.html">Predict</a></li>
+                    </ul>
+                </div>
+                <div class="list-container">
+                    <div class="list-title">Get In Touch</div>
+                    <ul>
+                        <li><a href="https://maps.app.goo.gl/uejm7y1HKX4WNbyM7">Skopje, Macedonia</a></li>
+                        <li>johndoe@example.com</li>
+                        <li>+389 12 34 56</li>
+                    </ul>
+                </div>
+                <div class="list-container">
+                    <div class="list-title">Social Media</div>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>LinkedIn</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</main>
+</body>
+</html>

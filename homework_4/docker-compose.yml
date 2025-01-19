@@ -1,0 +1,35 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000" # Django port for backend
+    environment:
+      - DJANGO_SETTINGS_MODULE=dians_project.settings
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - login_microservice
+
+  login_microservice:
+    build:
+      context: ./login_microservice
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001" # Django port for microservice
+    environment:
+      - DJANGO_SETTINGS_MODULE=login_microservice.settings
+    volumes:
+      - ./login_microservice:/app
+
+  frontend:
+    build:
+      context: ./frontend/dians_frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # Next.js port for frontend
+    volumes:
+      - ./frontend/dians_frontend:/app
+    environment:
+      - NODE_ENV=development

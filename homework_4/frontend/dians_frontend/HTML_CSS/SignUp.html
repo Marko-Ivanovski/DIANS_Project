@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | MSE</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="Primary-Header">
+    <div class="container">
+        <a href="#"><img src="Images/Logo.png" alt="Macedonian Stock Exchange Logo"></a>
+        <nav class="primary-navigation">
+            <ul class="nav-list">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Predict.html">Predict</a></li>
+                <li><a href="About.html">About Us</a></li>
+                <li><a href="MyStocks.html">My Stocks</a></li>
+            </ul>
+        </nav>
+        <div class="buttons">
+            <a href="LogIn.html">
+                <button class="login-btn">Log In</button>
+            </a>
+
+            <a href="SignUp.html">
+                <button class="signup-btn">Sign Up</button>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="signup-page">
+    <div class="signup-container">
+        <!-- Left Section: Signup Form -->
+        <div class="signup-form">
+            <div class="badge">Sign Up</div>
+            <h1 class="form-title">Become a Member</h1>
+            <hr class="divider">
+            <form action="LogIn.html" method="POST">
+                <div class="form-group">
+                    <label for="first-name">First Name*</label>
+                    <input type="text" id="first-name" name="first-name" placeholder="e.g. John" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name*</label>
+                    <input type="text" id="last-name" name="last-name" placeholder="e.g. Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" placeholder="e.g. john.doe@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password* (min 8 characters)</label>
+                    <input type="password" id="password" name="password" minlength="8" required>
+                </div>
+                <button class="cta-button" type="submit">Create Account Today!</button>
+            </form>
+            <p class="login-link">Already have an account? <a href="LogIn.html">Log In</a></p>
+        </div>
+
+        <!-- Right Section: Background Text -->
+        <div class="signup-background">
+            <div class="background-text">
+                <h1>Start Your Journey to Smarter Investing</h1>
+                <p>Join the Macedonian Stock Exchange platform today and take the first step towards smarter investing.
+                    By signing up, you gain access to real-time market data, AI-driven predictions, and secure trading
+                    tools—all designed to help you succeed in the stock market. Start your journey with us and unlock
+                    the power of informed decision-making.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-left">
+            <a href="#"><img src="Images/Logo.png" alt="Macedonian Stock Exchange Logo"></a>
+            <p>Stay informed with the latest stock trends and market analysis. Our platform provides you with real-time
+                updates and historical data to empower your investment decisions.</p>
+            <div class="buttons">
+                <a href="LogIn.html">
+                    <button class="login-btn">Log In</button>
+                </a>
+
+                <a href="SignUp.html">
+                    <button class="signup-btn">Sign Up</button>
+                </a>
+            </div>
+        </div>
+        <div class="footer-right">
+            <div class="list-container">
+                <div class="list-title">Quick Links</div>
+                <ul>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="About.html">About Us</a></li>
+                    <li><a href="MyStocks.html">My Stocks</a></li>
+                    <li><a href="Predict.html">Predict</a></li>
+                </ul>
+            </div>
+            <div class="list-container">
+                <div class="list-title">Get In Touch</div>
+                <ul>
+                    <li><a href="https://maps.app.goo.gl/uejm7y1HKX4WNbyM7">Skopje, Macedonia</a></li>
+                    <li>johndoe@example.com</li>
+                    <li>+389 12 34 56</li>
+                </ul>
+            </div>
+            <div class="list-container">
+                <div class="list-title">Social Media</div>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>LinkedIn</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 const Login = () => {
     const router = useRouter();
     const [formData, setFormData] = useState({
@@ -18,10 +20,15 @@ const Login = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:8000/login/", formData);
+            const response = await axios.post("http://localhost:8001/login/", formData, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
             console.log("User logged in:", response.data);
 
             // Store the tokens in localStorage or cookies (preferably httpOnly cookies)
+            localStorage.setItem("user_id", response.data.user_id);
             localStorage.setItem("access_token", response.data.access_token);
             localStorage.setItem("refresh_token", response.data.refresh_token);
 
@@ -31,6 +38,7 @@ const Login = () => {
         } catch (error: unknown) {
             if (error instanceof Error) {
                 console.error("Error logging in:", error.message);
+
             } else {
                 console.error("Unknown error occurred during login");
             }
