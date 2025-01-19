@@ -20,7 +20,7 @@ const Signup = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:8001/signup/", formData);
+            const response = await axios.post("http://localhost:8000/signup/", formData);
             console.log("User signed up:", response.data);
 
             router.push("/login");

@@ -20,7 +20,7 @@ const Login = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:8001/login/", formData, {
+            const response = await axios.post("http://localhost:8000/login/", formData, {
                 headers: {
                     "Content-Type": "application/json",
                 },
